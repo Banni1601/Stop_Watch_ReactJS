@@ -30,16 +30,33 @@ class StopWatch extends Component {
 
   Action = () => {
     const { Minutes, Seconds, isTimeRunning } = this.state;
-    if (Seconds < 61) {
-      if (Seconds === 60) {
-        this.setState({ Minutes: Minutes + 1, Seconds: 0 });
-      } else {
-        if (Seconds < 9) {
-          this.setState({ Seconds: Seconds + 1, sd: 0 });
-        } else if (Seconds >= 9) {
-          this.setState({ Seconds: Seconds + 1, sd: "" });
+    if (Minutes < 61) {
+      if (Seconds < 61) {
+        if (Seconds === 60) {
+          if (Minutes < 9) {
+            this.setState({
+              Minutes: Minutes + 1,
+              Seconds: 0,
+              md: 0,
+            });
+          } else if (Minutes >= 9) {
+            this.setState({
+              Minutes: Minutes + 1,
+              Seconds: 0,
+              md: "",
+            });
+          }
+          this.setState({ Minutes: Minutes + 1, Seconds: 0 });
+        } else {
+          if (Seconds < 9) {
+            this.setState({ Seconds: Seconds + 1, sd: 0 });
+          } else if (Seconds >= 9) {
+            this.setState({ Seconds: Seconds + 1, sd: "" });
+          }
         }
       }
+    } else {
+      this.setState({ Seconds: 0, Minutes: 0 });
     }
   };
 
